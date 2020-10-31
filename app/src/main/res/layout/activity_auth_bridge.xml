@@ -47,7 +47,7 @@
                 android:backgroundTint="@color/primary"
                 android:gravity="center"
                 android:text="Phone"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:icon="@drawable/phone"
                 app:iconTint="@color/white" />
@@ -60,7 +60,7 @@
                 android:backgroundTint="@color/facebook_blue"
                 android:gravity="center"
                 android:text="Facebook"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:icon="@drawable/facebook"
                 app:iconTint="@color/white" />
@@ -72,7 +72,7 @@
                 android:backgroundTint="@color/red"
                 android:gravity="center"
                 android:text="Email"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 app:icon="@drawable/email"
                 app:iconTint="@color/white" />
