@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "857021598737",
+    "firebase_url": "https://medillah.firebaseio.com",
+    "project_id": "medillah",
+    "storage_bucket": "medillah.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857021598737:android:ef7701cef2d33a6180f5b0",
+        "android_client_info": {
+          "package_name": "com.smartechbraintechnologies.medillah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857021598737-k8mb85vvk4s0ae7ev9uradvt3qsv7v8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACfbHm0b8Qw16h5JdVwxxTheNg470X3hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857021598737-k8mb85vvk4s0ae7ev9uradvt3qsv7v8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
