@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondary"
-    tools:context=".ClientSurveyActivity">
+    tools:context=".Authentication.ClientSurveyActivity">
 
     <TextView
         android:id="@+id/client_survey_title"

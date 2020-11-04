@@ -3,6 +3,9 @@
     <string name="facebook_app_id">285858799253986</string>
     <string name="fb_login_protocol_scheme">fb285858799253986</string>
 
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+
     <string name="medillah">Medillah</string>
     <string name="healthcareandwellness">Healthcare and Wellness</string>
 

@@ -1,4 +1,4 @@
-package com.smartechbraintechnologies.medillah;
+package com.smartechbraintechnologies.medillah.Authentication;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.smartechbraintechnologies.medillah.MainActivity;
+import com.smartechbraintechnologies.medillah.R;
+import com.smartechbraintechnologies.medillah.ShowSnackbar;
 
 import java.util.HashMap;
 import java.util.Map;

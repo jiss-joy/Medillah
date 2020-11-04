@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_pharmacy"
+        android:icon="@drawable/pharmacy_bw"
+        android:title="Pharmacy" />
+
+    <item
+        android:id="@+id/nav_consultation"
+        android:icon="@drawable/doctor_bw"
+        android:title="Consultation" />
+
+
+    <item
+        android:id="@+id/nav_wellness"
+        android:icon="@drawable/wellness_bw"
+        android:title="Wellness" />
+
+    <item
+        android:id="@+id/nav_lab_test"
+        android:icon="@drawable/lab_bw"
+        android:title="Lab Tests" />
+
+
+</menu>

@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Medillah">
-        <activity android:name=".ClientSurveyActivity" />
+        <activity android:name=".Authentication.ClientSurveyActivity" />
         <activity android:name=".Authentication.VerifyOtpActivity" />
         <activity android:name=".Authentication.PhoneAuthActivity" />
         <activity android:name=".MainActivity">

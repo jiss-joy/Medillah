@@ -23,7 +23,6 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken;
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks;
-import com.smartechbraintechnologies.medillah.ClientSurveyActivity;
 import com.smartechbraintechnologies.medillah.MainActivity;
 import com.smartechbraintechnologies.medillah.R;
 import com.smartechbraintechnologies.medillah.ShowSnackbar;

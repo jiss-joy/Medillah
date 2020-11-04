@@ -4,6 +4,9 @@
     <string name="facebook_app_id">285858799253986</string>
     <string name="fb_login_protocol_scheme">fb285858799253986</string>
 
+    <string name="navigation_drawer_open">നാവിഗേഷൻ ഡ്രോയർ തുറക്കുക</string>
+    <string name="navigation_drawer_close">നാവിഗേഷൻ ഡ്രോയർ അടയ്‌ക്കുക</string>
+
     <string name="medillah">മെഡില</string>
     <string name="healthcareandwellness">ആരോഗ്യ സംരക്ഷണവും ആരോഗ്യവും</string>
 
