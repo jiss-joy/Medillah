@@ -2,12 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/phone_auth_relative_layout"
+    android:id="@+id/verify_otp_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondary"
-    tools:context=".Authentication.PhoneAuthActivity">
-
+    tools:context=".Authentication.VerifyOtpActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         android:scrollbars="vertical">
 
         <LinearLayout
-            android:id="@+id/phone_auth_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -25,37 +23,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="250sp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="40sp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/doctor" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10sp"
-                android:fontFamily="@font/bold"
-                android:gravity="center"
-                android:text="@string/medillah"
-                android:textAllCaps="true"
-                android:textColor="@color/primary"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20sp"
-                android:gravity="center"
-                android:text="@string/healthcareandwellness"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_margin="20sp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="10sp">
@@ -71,35 +46,37 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bold"
-                        android:text="@string/welcome"
+                        android:text="@string/verifyotp"
                         android:textColor="@color/primary"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/verify_otp_phone_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10sp"
                         android:layout_marginTop="10sp"
                         android:fontFamily="@font/regular"
                         android:gravity="center"
-                        android:text="@string/signin_signup"
+                        android:text="@string/otpsentto"
                         android:textColor="@color/black"
                         android:textSize="15sp" />
 
                     <EditText
-                        android:id="@+id/phone_auth_phone_no"
+                        android:id="@+id/verify_otp_otp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20sp"
                         android:layout_marginTop="20sp"
+                        android:autofillHints="no"
                         android:background="@drawable/custom_editext"
-                        android:drawableStart="@drawable/phone"
+                        android:drawableStart="@drawable/password"
                         android:drawablePadding="10sp"
                         android:fontFamily="@font/regular"
                         android:gravity="center"
-                        android:hint="@string/mobilenumber"
-                        android:inputType="phone|number"
+                        android:hint="@string/enterotp"
+                        android:inputType="number"
                         android:padding="10sp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/secondary"
@@ -107,28 +84,50 @@
 
 
                     <Button
-                        android:id="@+id/phone_auth_send_otp_btn"
+                        android:id="@+id/verify_otp_verify_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="20sp"
                         android:backgroundTint="@color/primary"
                         android:fontFamily="@font/bold"
-                        android:text="@string/pleasecontinue"
+                        android:text="@string/submit"
                         android:textColor="@color/secondary"
                         android:textSize="15sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/verify_otp_resend_otp_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20sp"
+                            android:backgroundTint="@color/primary"
+                            android:fontFamily="@font/bold"
+                            android:gravity="center"
+                            android:text="@string/resendotp"
+                            android:textColor="@color/secondary"
+                            android:textSize="15sp"
+                            app:icon="@drawable/refresh"
+                            app:iconTint="@color/secondary" />
+
+                        <TextView
+                            android:id="@+id/verify_otp_otp_timer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/verify_otp_resend_otp_btn"
+                            android:fontFamily="@font/regular"
+                            android:text="00:00"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
-            <ImageButton
-                android:id="@+id/phone_auth_language_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="16sp"
-                android:background="@null"
-                android:src="@drawable/settings" />
 
         </LinearLayout>
 

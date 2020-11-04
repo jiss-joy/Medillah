@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">Medillah</string>
+    <string name="facebook_app_id">285858799253986</string>
+    <string name="fb_login_protocol_scheme">fb285858799253986</string>
+
+    <string name="medillah">Medillah</string>
+    <string name="healthcareandwellness">Healthcare and Wellness</string>
+
+    <string name="signin_signup">Sign in or Sign up to continue</string>
+    <string name="welcome">Welcome</string>
+    <string name="signintocontinue">Please sign in to continue</string>
+    <string name="mobilenumber">10 digit mobile number</string>
+    <string name="pleasecontinue">Continue</string>
+    <string name="wrongmobilenumber">Invalid Mobile Number</string>
+
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="phonenumbercannotbeempty">Phone number cannot be empty</string>
+    <string name="invalidphonenumber">Phone number is invalid</string>
+    <string name="otpsentto">An OTP has been sent to</string>
+    <string name="verifyotp">Verify OTP</string>
+    <string name="enterotp">Enter 6 digit OTP</string>
+    <string name="submit">Submit</string>
+    <string name="resendotp">Resend OTP</string>
+    <string name="entervalidotp">Please enter the OTP</string>
+
+    <string name="profile">Profile</string>
+    <string name="whatisyourname">What is your name?</string>
+    <string name="whatisyourdob">Date of birth?</string>
+    <string name="whatisyourgender">What is your gender?</string>
+    <string name="whatisyourheight">What is your height?</string>
+    <string name="whatisyourweight">What is your weight?</string>
+    <string name="whatisyourbloodgroup">What is your blood group?</string>
+    <string name="enterfullnamehere">Enter full name here</string>
+    <string name="selectdob">Enter date of birth</string>
+    <string name="selectheight">Enter height</string>
+    <string name="selectweight">Enter weight</string>
+    <string name="selectbloodgroup">Enter blood group</string>
+    <string name="other">Other</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+    <string name="pleasefillallthedetails">Please fill all the details</string>
+    <string name="pleasecheckyourname">Please check your name</string>
+
+
 </resources>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/client_survey_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary"
+    tools:context=".ClientSurveyActivity">
+
+    <TextView
+        android:id="@+id/client_survey_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:drawablePadding="10sp"
+        android:drawableTint="@color/primary"
+        android:fontFamily="@font/bold"
+        android:text="@string/profile"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:drawableEndCompat="@drawable/user" />
+
+    <Button
+        android:id="@+id/client_survey_next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:fontFamily="@font/bold"
+        android:text="NEXT"
+        android:textColor="@color/secondary"
+        android:textSize="15sp"
+        app:icon="@drawable/next"
+        app:iconGravity="end"
+        app:iconTint="@color/secondary" />
+
+    <View
+        android:id="@+id/client_survey_line"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_below="@id/client_survey_title"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginTop="15sp"
+        android:background="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/client_survey_line">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourname"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/client_survey_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/custom_editext"
+                android:hint="@string/enterfullnamehere"
+                android:padding="10sp"
+                android:textColor="@color/secondary"
+                android:textColorHint="@color/secondary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourdob"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/client_survey_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/custom_editext"
+                android:hint="@string/selectdob"
+                android:padding="10sp"
+                android:textColor="@color/secondary"
+                android:textColorHint="@color/secondary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourgender"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/client_survey_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10sp"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:gravity="center"
+                    android:text="@string/male" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:gravity="center"
+                    android:text="@string/female" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/CustomChipStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:gravity="center"
+                    android:text="@string/other" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourheight"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/client_survey_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/custom_editext"
+                android:hint="@string/selectheight"
+                android:padding="10sp"
+                android:textColor="@color/secondary"
+                android:textColorHint="@color/secondary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourweight"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/client_survey_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/custom_editext"
+                android:hint="@string/selectweight"
+                android:padding="10sp"
+                android:textColor="@color/secondary"
+                android:textColorHint="@color/secondary"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="@string/whatisyourbloodgroup"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/client_survey_blood_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="30sp"
+                android:background="@drawable/custom_editext"
+                android:hint="@string/selectbloodgroup"
+                android:padding="10sp"
+                android:textColor="@color/secondary"
+                android:textColorHint="@color/secondary"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
