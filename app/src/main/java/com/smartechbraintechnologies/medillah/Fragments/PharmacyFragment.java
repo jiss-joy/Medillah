@@ -8,19 +8,59 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.smartechbraintechnologies.medillah.R;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 public class PharmacyFragment extends Fragment {
+
+    private final int[] images = {R.drawable.offer1, R.drawable.offer2, R.drawable.offer3};
+    private final String[] categories = {"Ayurveda", "Nutrition & Supplements", "Sexual Wellness",
+            "Devices & Accessories", "Baby Care", "Woman Healthcare"};
+    private final int[] categoryImages = {R.drawable.ayurveda, R.drawable.nutrition, R.drawable.sexual_wellness,
+            R.drawable.healthcare_devices, R.drawable.baby_care, R.drawable.woman};
+    private SliderView sliderView;
+    private RecyclerView recyclerView_1, recyclerView_2;
+    private AdapterImageSlider sliderAdapter;
+    private AdapterCategory categoryAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pharmacy, container, false);
 
-        ViewPager viewPager = view.findViewById(R.id.view_pager);
-        ImageAdapter imageAdapter = new ImageAdapter(getContext());
+
+        initValues(view);
+
+        setUpSlider_1();
+        setUpRecycler_2();
 
         return view;
+    }
+
+    private void setUpRecycler_2() {
+        categoryAdapter = new AdapterCategory(getContext(), categoryImages, categories);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        gridLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        gridLayoutManager.setSmoothScrollbarEnabled(true);
+        recyclerView_2.setLayoutManager(gridLayoutManager);
+        recyclerView_2.setAdapter(categoryAdapter);
+    }
+
+    private void setUpSlider_1() {
+        sliderAdapter = new AdapterImageSlider(images);
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.startAutoCycle();
+    }
+
+    private void initValues(View view) {
+        sliderView = view.findViewById(R.id.slider_view);
+        recyclerView_2 = (RecyclerView) view.findViewById(R.id.pharmacy_shopping_category_recycler_view);
     }
 }

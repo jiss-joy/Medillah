@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.smartechbraintechnologies.medillah.Authentication.PhoneAuthActivity;
@@ -33,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ImageButton hamburger;
+    private NavigationView navigationView;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
     private int fragmentFlag = 1;
-
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         hamburger = (ImageButton) findViewById(R.id.hamburger);
+        navigationView = (NavigationView) findViewById(R.id.side_nav);
 //        relativeLayout = findViewById(R.id.main_activity_layout);
     }
 
@@ -93,6 +95,21 @@ public class MainActivity extends AppCompatActivity {
 
         initValues();
         setSupportActionBar(toolbar);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.side_nav_profile:
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        break;
+//                        case R.id.
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -116,10 +133,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (currentUser == null) {
-            Intent intent = new Intent(MainActivity.this, PhoneAuthActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
         } else {
-
+//            startActivity(new Intent(MainActivity.this, Demo.class));
+//            LoadingDialog dialog = new LoadingDialog(MainActivity.this);
+//            dialog.showLoadingDialog("Loading Data...");
         }
     }
 

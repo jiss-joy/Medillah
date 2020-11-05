@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.smartechbraintechnologies.medillah.LoadingDialog;
 import com.smartechbraintechnologies.medillah.MainActivity;
 import com.smartechbraintechnologies.medillah.R;
 import com.smartechbraintechnologies.medillah.ShowSnackbar;
@@ -36,16 +37,15 @@ public class ClientSurveyActivity extends AppCompatActivity {
     public static final int HEIGHT = 1;
     public static final int WEIGHT = 2;
     public static final int BLOOD_GROUP = 3;
-    private final String[] bloodGroups = {"O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"};
-    private final String[] heights = new String[130];
-    private final String[] weights = new String[130];
-    private final Map<String, Object> user = new HashMap<>();
+
     private EditText mName_tv;
     private TextView mDateOfBirth_tv, mHeight_tv, mWeight_tv, mBloodGroup_tv;
     private DatePickerDialog.OnDateSetListener mOnDateSetListener;
     private Button nextBTN;
     private RelativeLayout relativeLayout;
     private ChipGroup chipGroup;
+    private final String[] bloodGroups = {"O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"};
+
     private String mName, mPhoneNumber, mDob, mGender, mHeight, mWeight, mBloodGroup, mYear, mMonth, mDay;
     private int yearIndex = 1999;
     private int monthIndex = 1;
@@ -53,6 +53,11 @@ public class ClientSurveyActivity extends AppCompatActivity {
     private int heightIndex = 80;
     private int weightIndex = 40;
     private int bloodGroupIndex = 5;
+    private final String[] heights = new String[130];
+    private final String[] weights = new String[130];
+    private final Map<String, Object> user = new HashMap<>();
+    private LoadingDialog loadingDialog;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private CollectionReference userRef;
@@ -119,6 +124,7 @@ public class ClientSurveyActivity extends AppCompatActivity {
         nextBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.showLoadingDialog("Verifying Details...");
                 validateData();
             }
         });
@@ -129,9 +135,11 @@ public class ClientSurveyActivity extends AppCompatActivity {
         int id = chipGroup.getCheckedChipId();
         chipGroup.getChildAt(chipGroup.getCheckedChipId());
         if (mName.isEmpty() || id == -1 || mHeight.isEmpty() || mWeight.isEmpty() || mBloodGroup.isEmpty() || mDob.isEmpty()) {
+            loadingDialog.dismissLoadingDialog();
             ShowSnackbar.show(ClientSurveyActivity.this, getResources().getString(R.string.pleasefillallthedetails),
                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
         } else if (mName.contains("[0-9]+")) {
+            loadingDialog.dismissLoadingDialog();
             ShowSnackbar.show(ClientSurveyActivity.this, getResources().getString(R.string.pleasecheckyourname),
                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
         } else {
@@ -146,6 +154,7 @@ public class ClientSurveyActivity extends AppCompatActivity {
                     mGender = "Other";
                     break;
             }
+            loadingDialog.showLoadingDialog("Please wait while we create your account...");
             addUserDetails();
         }
 
@@ -166,6 +175,7 @@ public class ClientSurveyActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if (task.isSuccessful()) {
                     finish();
+                    loadingDialog.dismissLoadingDialog();
                     startActivity(new Intent(ClientSurveyActivity.this, MainActivity.class));
                 }
             }
@@ -245,6 +255,7 @@ public class ClientSurveyActivity extends AppCompatActivity {
         nextBTN = findViewById(R.id.client_survey_next_btn);
         relativeLayout = findViewById(R.id.client_survey_relative_layout);
         chipGroup = findViewById(R.id.client_survey_chip_group);
+        loadingDialog = new LoadingDialog(ClientSurveyActivity.this);
 
         initializeStringArrays();
 

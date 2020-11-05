@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.smartechbraintechnologies.medillah.LoadingDialog;
 import com.smartechbraintechnologies.medillah.R;
 import com.smartechbraintechnologies.medillah.ShowSnackbar;
 
@@ -29,6 +30,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
     private Button sendOTP_BTN;
     private RelativeLayout relativeLayout;
     private ImageButton lang_settings;
+    private LoadingDialog loadingDialog;
+
 
     private String mPhoneNumber;
 
@@ -43,10 +46,12 @@ public class PhoneAuthActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.secondary));
         }
         initValues();
+        loadingDialog.dismissLoadingDialog();
 
         sendOTP_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.showLoadingDialog("Validating Number...");
                 validateNumber();
             }
         });
@@ -67,10 +72,12 @@ public class PhoneAuthActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.language_change_english:
+                        loadingDialog.showLoadingDialog("Changing Language...");
                         setLocale("en");
                         recreate();
                         return true;
                     case R.id.language_change_malayalam:
+                        loadingDialog.showLoadingDialog("Changing Language...");
                         setLocale("ml");
                         recreate();
                         return true;
@@ -102,12 +109,15 @@ public class PhoneAuthActivity extends AppCompatActivity {
     private void validateNumber() {
         mPhoneNumber = phone_no_et.getText().toString();
         if (mPhoneNumber.isEmpty()) {
+            loadingDialog.dismissLoadingDialog();
             ShowSnackbar.show(PhoneAuthActivity.this, getResources().getString(R.string.phonenumbercannotbeempty),
                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
         } else if (mPhoneNumber.length() != 10) {
+            loadingDialog.dismissLoadingDialog();
             ShowSnackbar.show(PhoneAuthActivity.this, getResources().getString(R.string.invalidphonenumber),
                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
         } else {
+            loadingDialog.dismissLoadingDialog();
             startActivity(new Intent(PhoneAuthActivity.this, VerifyOtpActivity.class)
                     .putExtra("Phone Number", mPhoneNumber));
         }
@@ -119,6 +129,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
         sendOTP_BTN = findViewById(R.id.phone_auth_send_otp_btn);
         relativeLayout = findViewById(R.id.phone_auth_relative_layout);
         lang_settings = findViewById(R.id.phone_auth_language_settings);
+        lang_settings.setVisibility(View.GONE);
+        loadingDialog = new LoadingDialog(PhoneAuthActivity.this);
     }
 
     @Override

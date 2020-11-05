@@ -15,12 +15,11 @@
         android:layout_marginStart="16sp"
         android:layout_marginTop="16sp"
         android:drawablePadding="10sp"
-        android:drawableTint="@color/primary"
         android:fontFamily="@font/bold"
         android:text="@string/profile"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:drawableEndCompat="@drawable/user" />
+        app:drawableEndCompat="@drawable/profile" />
 
     <Button
         android:id="@+id/client_survey_next_btn"

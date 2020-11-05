@@ -78,11 +78,19 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways">
 
 
-                <androidx.appcompat.widget.SearchView
+                <Button
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="7sp"
-                    android:background="@color/primary_light" />
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="3sp"
+                    android:layout_marginEnd="15sp"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center_vertical|start"
+                    android:text="Search healthcare products"
+                    android:textAllCaps="false"
+                    android:textColor="@color/secondary_light"
+                    app:icon="@drawable/search"
+                    app:iconGravity="start"
+                    app:iconTint="@color/secondary" />
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

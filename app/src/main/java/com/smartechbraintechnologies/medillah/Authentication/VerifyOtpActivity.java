@@ -23,6 +23,7 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken;
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks;
+import com.smartechbraintechnologies.medillah.LoadingDialog;
 import com.smartechbraintechnologies.medillah.MainActivity;
 import com.smartechbraintechnologies.medillah.R;
 import com.smartechbraintechnologies.medillah.ShowSnackbar;
@@ -39,6 +40,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
     private Button submitBTN, resendBTN;
     private RelativeLayout relativeLayout;
     private CountDownTimer mCountDownTimer;
+    private LoadingDialog loadingDialog;
 
     private FirebaseAuth mAuth;
 
@@ -56,6 +58,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
 
         initValues();
         updateCountDownText();
+        setCallback();
         sendOTP();
 
 
@@ -136,10 +139,12 @@ public class VerifyOtpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (task.getResult().getAdditionalUserInfo().isNewUser()) {
                                 finish();
+                                loadingDialog.dismissLoadingDialog();
                                 startActivity(new Intent(VerifyOtpActivity.this, ClientSurveyActivity.class)
                                         .putExtra("Phone Number", mPhoneNumber));
                             } else {
                                 finish();
+                                loadingDialog.dismissLoadingDialog();
                                 startActivity(new Intent(VerifyOtpActivity.this, MainActivity.class));
                             }
                         }
@@ -159,6 +164,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
         otp_sent_tv.setText(getResources().getString(R.string.otpsentto) + " +91-" + mPhoneNumber);
         relativeLayout = findViewById(R.id.verify_otp_relative_layout);
         mCountDown_tv = findViewById(R.id.verify_otp_otp_timer);
+        loadingDialog = new LoadingDialog(VerifyOtpActivity.this);
 
         mAuth = FirebaseAuth.getInstance();
         setCallback();
@@ -185,14 +191,18 @@ public class VerifyOtpActivity extends AppCompatActivity {
                 submitBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        loadingDialog.showLoadingDialog("Verifying OTP...");
                         String userOTP = otp_et.getText().toString();
                         if (userOTP.isEmpty()) {
+                            loadingDialog.dismissLoadingDialog();
                             ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
                                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
                         } else if (userOTP.length() != 6) {
+                            loadingDialog.dismissLoadingDialog();
                             ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
                                     relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
                         } else {
+                            loadingDialog.showLoadingDialog("Authenticating User...");
                             PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(sentOTP, userOTP);
                             signInUser(phoneAuthCredential);
                         }
