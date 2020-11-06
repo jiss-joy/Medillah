@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        hamburger = (ImageButton) findViewById(R.id.hamburger);
-        navigationView = (NavigationView) findViewById(R.id.side_nav);
+        toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        hamburger = findViewById(R.id.hamburger);
+        navigationView = findViewById(R.id.side_nav);
 //        relativeLayout = findViewById(R.id.main_activity_layout);
     }
 
@@ -135,9 +135,7 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser == null) {
             startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
         } else {
-//            startActivity(new Intent(MainActivity.this, Demo.class));
-//            LoadingDialog dialog = new LoadingDialog(MainActivity.this);
-//            dialog.showLoadingDialog("Loading Data...");
+            startActivity(new Intent(MainActivity.this, MyAddressesActivity.class));
         }
     }
 

@@ -57,10 +57,9 @@ public class VerifyOtpActivity extends AppCompatActivity {
         mPhoneNumber = getIntent().getStringExtra("Phone Number");
 
         initValues();
-        updateCountDownText();
-        setCallback();
-        sendOTP();
 
+        updateCountDownText();
+        sendOTP();
 
         resendBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,6 @@ public class VerifyOtpActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void resendOTP() {
@@ -78,7 +76,44 @@ public class VerifyOtpActivity extends AppCompatActivity {
                 .setPhoneNumber("+91" + mPhoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(this)
-                .setCallbacks(mCallback)
+                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        signInUser(phoneAuthCredential);
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(VerifyOtpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(VerifyOtpActivity.this, "Too many attempts detected.\n Please try again later", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(VerifyOtpActivity.this, PhoneAuthActivity.class));
+                    }
+
+                    @Override
+                    public void onCodeSent(@NonNull String sentOTP, @NonNull ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(sentOTP, forceResendingToken);
+                        token = forceResendingToken;
+                        submitBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                loadingDialog.showLoadingDialog("Authenticating...");
+                                String userOTP = otp_et.getText().toString();
+                                if (userOTP.isEmpty()) {
+                                    loadingDialog.dismissLoadingDialog();
+                                    ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
+                                            relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
+                                } else if (userOTP.length() != 6) {
+                                    loadingDialog.dismissLoadingDialog();
+                                    ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
+                                            relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
+                                } else {
+                                    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(sentOTP, userOTP);
+                                    signInUser(phoneAuthCredential);
+                                }
+                            }
+                        });
+                    }
+                })
                 .setForceResendingToken(token)
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
@@ -90,7 +125,44 @@ public class VerifyOtpActivity extends AppCompatActivity {
                 .setPhoneNumber("+91" + mPhoneNumber)
                 .setTimeout(60L, TimeUnit.SECONDS)
                 .setActivity(this)
-                .setCallbacks(mCallback)
+                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        signInUser(phoneAuthCredential);
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(VerifyOtpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(VerifyOtpActivity.this, "Too many attempts detected.\n Please try again later", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(VerifyOtpActivity.this, PhoneAuthActivity.class));
+                    }
+
+                    @Override
+                    public void onCodeSent(@NonNull String sentOTP, @NonNull ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(sentOTP, forceResendingToken);
+                        token = forceResendingToken;
+                        submitBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                loadingDialog.showLoadingDialog("Authenticating...");
+                                String userOTP = otp_et.getText().toString();
+                                if (userOTP.isEmpty()) {
+                                    loadingDialog.dismissLoadingDialog();
+                                    ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
+                                            relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
+                                } else if (userOTP.length() != 6) {
+                                    loadingDialog.dismissLoadingDialog();
+                                    ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
+                                            relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
+                                } else {
+                                    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(sentOTP, userOTP);
+                                    signInUser(phoneAuthCredential);
+                                }
+                            }
+                        });
+                    }
+                })
                 .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
@@ -145,6 +217,7 @@ public class VerifyOtpActivity extends AppCompatActivity {
                             } else {
                                 finish();
                                 loadingDialog.dismissLoadingDialog();
+                                Toast.makeText(VerifyOtpActivity.this, "Welcome", Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(VerifyOtpActivity.this, MainActivity.class));
                             }
                         }
@@ -167,48 +240,5 @@ public class VerifyOtpActivity extends AppCompatActivity {
         loadingDialog = new LoadingDialog(VerifyOtpActivity.this);
 
         mAuth = FirebaseAuth.getInstance();
-        setCallback();
-    }
-
-    private void setCallback() {
-        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                signInUser(phoneAuthCredential);
-            }
-
-            @Override
-            public void onVerificationFailed(@NonNull FirebaseException e) {
-                Toast.makeText(VerifyOtpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-//                        Toast.makeText(VerifyOtpActivity.this, "Too many attempts detected.\n Please try again later", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(VerifyOtpActivity.this, PhoneAuthActivity.class));
-            }
-
-            @Override
-            public void onCodeSent(@NonNull String sentOTP, @NonNull ForceResendingToken forceResendingToken) {
-                super.onCodeSent(sentOTP, forceResendingToken);
-                token = forceResendingToken;
-                submitBTN.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        loadingDialog.showLoadingDialog("Verifying OTP...");
-                        String userOTP = otp_et.getText().toString();
-                        if (userOTP.isEmpty()) {
-                            loadingDialog.dismissLoadingDialog();
-                            ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
-                                    relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
-                        } else if (userOTP.length() != 6) {
-                            loadingDialog.dismissLoadingDialog();
-                            ShowSnackbar.show(VerifyOtpActivity.this, getResources().getString(R.string.entervalidotp),
-                                    relativeLayout, getResources().getColor(R.color.red), getResources().getColor(R.color.white));
-                        } else {
-                            loadingDialog.showLoadingDialog("Authenticating User...");
-                            PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(sentOTP, userOTP);
-                            signInUser(phoneAuthCredential);
-                        }
-                    }
-                });
-            }
-        };
     }
 }

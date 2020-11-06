@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4sp"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="10sp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/address_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10sp"
+            android:layout_toStartOf="@id/address_options_btn"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/address_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:fontFamily="@font/bold"
+                android:text="Address Status"
+                android:textColor="@color/secondary"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/address_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/address_status">
+
+                <ImageView
+                    android:id="@+id/address_img"
+                    android:layout_width="90sp"
+                    android:layout_height="90sp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="15sp"
+                    android:src="@drawable/location" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/address_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="Address Name"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Address"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/address_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Contact Info"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/address_no_delivery_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/address_layout"
+                android:layout_margin="5sp"
+                android:drawableStart="@drawable/warning"
+                android:drawablePadding="8sp"
+                android:fontFamily="@font/regular"
+                android:text="Currently not delivering to this address."
+                android:textColor="@color/red"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/address_options_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5sp"
+            android:background="@null"
+            android:src="@drawable/options" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
