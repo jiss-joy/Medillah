@@ -1,8 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetLocationActivity">
+    tools:context=".Activities.GetLocationActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/get_location_address_layout">
+
+        <fragment
+            android:id="@+id/get_location_map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/get_location_fixed_marker"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_centerInParent="true"
+            android:paddingBottom="35sp"
+            android:src="@drawable/location_pin" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/get_location_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:fontFamily="@font/bold"
+                android:text="Delivery Location:"
+                android:textColor="@color/secondary"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/get_location_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:fontFamily="@font/bold"
+            android:text="Location Area"
+            android:textColor="@color/secondary"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/get_location_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10sp"
+            android:ellipsize="end"
+            android:fontFamily="@font/regular"
+            android:maxLines="2"
+            android:text="Location Address"
+            android:textColor="@color/secondary"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/get_location_default_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5sp"
+            android:button="@drawable/checkbox"
+            android:paddingHorizontal="10sp"
+            android:text="Set as Default?"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/get_location_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:checkedButton="@id/get_location_home_radio"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/get_location_home_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/address_radiogroup"
+                android:button="@android:color/transparent"
+                android:drawableStart="@drawable/home"
+                android:drawablePadding="10sp"
+                android:drawableTint="@color/address_radio_icon_color"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:padding="10sp"
+                android:text="Home"
+                android:textColor="@color/address_radio_text" />
+
+            <RadioButton
+                android:id="@+id/get_location_work_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:background="@drawable/address_radiogroup"
+                android:button="@android:color/transparent"
+                android:drawableStart="@drawable/home"
+                android:drawablePadding="10sp"
+                android:drawableTint="@color/address_radio_icon_color"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:padding="10sp"
+                android:text="Work"
+                android:textColor="@color/address_radio_text" />
+
+            <RadioButton
+                android:id="@+id/get_location_other_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/address_radiogroup"
+                android:button="@android:color/transparent"
+                android:drawableStart="@drawable/home"
+                android:drawablePadding="10sp"
+                android:drawableTint="@color/address_radio_icon_color"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:padding="10sp"
+                android:text="Other"
+                android:textColor="@color/address_radio_text" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/get_location_confirm_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/bold"
+            android:paddingVertical="10sp"
+            android:text="Confirm Location"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+

@@ -7,7 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,10 +20,22 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.core.ImageTranscoderType;
+import com.facebook.imagepipeline.core.MemoryChunkType;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.smartechbraintechnologies.medillah.Activities.ProfileActivity;
+import com.smartechbraintechnologies.medillah.Activities.ShoppingCartActivity;
 import com.smartechbraintechnologies.medillah.Authentication.PhoneAuthActivity;
 import com.smartechbraintechnologies.medillah.Fragments.ConsultationFragment;
 import com.smartechbraintechnologies.medillah.Fragments.LabTestFragment;
@@ -35,7 +50,12 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ImageButton hamburger;
     private NavigationView navigationView;
+    private Button searchBTN;
+    private FrameLayout cartBTN;
+    private TextView cartBadgeText;
 
+    private FirebaseFirestore db;
+    private DocumentReference cartRef;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -77,9 +97,16 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
-        hamburger = findViewById(R.id.hamburger);
+        hamburger = findViewById(R.id.main_hamburger_btn);
         navigationView = findViewById(R.id.side_nav);
 //        relativeLayout = findViewById(R.id.main_activity_layout);
+        searchBTN = (Button) findViewById(R.id.main_activity_search_btn);
+        cartBTN = (FrameLayout) findViewById(R.id.main_activity_cart_btn);
+        cartBadgeText = (TextView) findViewById(R.id.item_cart_text);
+
+        db = FirebaseFirestore.getInstance();
+        cartRef = db.collection("Users").document(currentUser.getUid())
+                .collection("Shopping Cart").document("Cart Quantity");
     }
 
     @Override
@@ -92,7 +119,15 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.primary));
         }
+//        Fresco.initialize(this);
 
+        Fresco.initialize(
+                this,
+                ImagePipelineConfig.newBuilder(this)
+                        .setMemoryChunkType(MemoryChunkType.BUFFER_MEMORY)
+                        .setImageTranscoderType(ImageTranscoderType.JAVA_TRANSCODER)
+                        .experiment().setNativeCodeDisabled(true)
+                        .build());
         initValues();
         setSupportActionBar(toolbar);
 
@@ -127,6 +162,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        searchBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SearchEngine.class));
+            }
+        });
+
+        cartBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ShoppingCartActivity.class));
+            }
+        });
+
+        setCartBadge();
+    }
+
+    private void setCartBadge() {
+        cartRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+            }
+        });
     }
 
     @Override
@@ -135,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         if (currentUser == null) {
             startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
         } else {
-            startActivity(new Intent(MainActivity.this, MyAddressesActivity.class));
+//            startActivity(new Intent(MainActivity.this, GetLocationActivity.class));
         }
     }
 

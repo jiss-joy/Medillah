@@ -5,41 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondary_light"
-    tools:context=".MyAddressesActivity">
+    tools:context=".Activities.MyAddressesActivity">
 
     <include
         android:id="@+id/my_addresses_toolbar"
-        layout="@layout/custom_toolbar" />
+        layout="@layout/toolbar" />
 
-    <include
-        android:id="@+id/one"
-        layout="@layout/item_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/my_addresses_toolbar"
-        android:layout_marginTop="10sp" />
-
-    <include
-        android:id="@+id/two"
-        layout="@layout/item_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/one"
-        android:layout_marginTop="10sp" />
-
-    <include
-        android:id="@+id/three"
-        layout="@layout/item_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/two"
-        android:layout_marginTop="10sp" />
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_below="@id/my_addresses_toolbar"-->
-    <!--        android:padding="10sp" />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_addresses_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_addresses_toolbar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/my_addresses_add_btn"
@@ -53,5 +29,27 @@
         android:src="@drawable/add"
         app:backgroundTint="@color/primary"
         app:rippleColor="@color/primary_dark" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/my_addresses_no_address_anime"
+        android:layout_width="match_parent"
+        android:layout_height="280sp"
+        android:layout_centerInParent="true"
+        android:layout_margin="50sp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/no_address" />
+
+    <TextView
+        android:id="@+id/my_addresses_no_address_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_addresses_no_address_anime"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="You do not have any addresses.\nAdd one now."
+        android:textColor="@color/secondary"
+        android:textSize="18sp" />
 
 </RelativeLayout>

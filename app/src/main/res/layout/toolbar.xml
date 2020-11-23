@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/primary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/toolbar_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:background="@null"
+            android:paddingHorizontal="20sp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20sp"
+            android:layout_toEndOf="@id/toolbar_back_btn"
+            android:fontFamily="@font/bold"
+            android:text="Medillah"
+            android:textColor="@color/secondary"
+            android:textSize="22sp" />
+
+        <ImageButton
+            android:id="@+id/toolbar_search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/toolbar_shopping_btn"
+            android:background="@null"
+            android:onClick="openActivity"
+            android:paddingHorizontal="20sp"
+            android:src="@drawable/search" />
+
+        <include
+            android:id="@+id/toolbar_shopping_btn"
+            layout="@layout/item_shopping_cart_button"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+
+</Toolbar>

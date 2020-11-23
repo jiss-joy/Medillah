@@ -1,16 +1,352 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    android:background="@color/secondary_light"
+    tools:context=".Activities.ProfileActivity">
 
-    <Button
-        android:id="@+id/log_out_btn"
+    <include
+        android:id="@+id/profile_toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Log Out"
-        android:textColor="@color/secondary" />
+        android:layout_below="@id/profile_toolbar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:src="@drawable/edit"
+        app:backgroundTint="@color/primary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/profile_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_toolbar"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="My Profile"
+                android:textColor="@color/secondary"
+                android:textSize="20sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_title"
+                android:layout_margin="7sp"
+                android:backgroundTint="@color/white"
+                android:elevation="10sp"
+                app:cardCornerRadius="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5sp"
+                    android:orientation="vertical">
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_pic"
+                        android:layout_width="120sp"
+                        android:layout_height="120sp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10sp"
+                        android:src="@drawable/user"
+                        app:civ_border_color="@color/black"
+                        app:civ_border_width="1sp" />
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="7sp"
+                        android:drawableStart="@drawable/profile"
+                        android:drawablePadding="10sp"
+                        android:gravity="center"
+                        android:text="User Name"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="30sp"
+                        android:background="@color/secondary_light" />
+
+                    <TextView
+                        android:id="@+id/profile_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="7sp"
+                        android:drawableStart="@drawable/phone"
+                        android:drawablePadding="10sp"
+                        android:gravity="center"
+                        android:text="+91-1234567890"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="Personal Information"
+                android:textColor="@color/secondary"
+                android:textSize="20sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_title"
+                android:layout_margin="7sp"
+                android:backgroundTint="@color/white"
+                android:elevation="10sp"
+                app:cardCornerRadius="10sp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16sp"
+                        android:drawableStart="@drawable/blood_drop"
+                        android:drawablePadding="10sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Blood Group"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/profile_blood_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="B+ve"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/view_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/tv_1"
+                        android:layout_marginHorizontal="10sp"
+                        android:background="@color/secondary_light" />
+
+                    <TextView
+                        android:id="@+id/tv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_1"
+                        android:layout_margin="16sp"
+                        android:drawableStart="@drawable/height"
+                        android:drawablePadding="10sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Height"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/profile_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="160CM"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/view_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/tv_2"
+                        android:layout_marginHorizontal="10sp"
+                        android:background="@color/secondary_light" />
+
+                    <TextView
+                        android:id="@+id/tv_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_2"
+                        android:layout_margin="16sp"
+                        android:drawableStart="@drawable/weight"
+                        android:drawablePadding="10sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Weight"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/profile_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_2"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="60KG"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/view_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/tv_3"
+                        android:layout_marginHorizontal="10sp"
+                        android:background="@color/secondary_light" />
+
+                    <TextView
+                        android:id="@+id/tv_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_3"
+                        android:layout_margin="16sp"
+                        android:drawableStart="@drawable/gender"
+                        android:drawablePadding="10sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Gender"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/profile_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_3"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="Male"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/view_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/tv_4"
+                        android:layout_marginHorizontal="10sp"
+                        android:background="@color/secondary_light" />
+
+                    <TextView
+                        android:id="@+id/tv_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_4"
+                        android:layout_margin="16sp"
+                        android:drawableStart="@drawable/dob"
+                        android:drawablePadding="10sp"
+                        android:fontFamily="@font/regular"
+                        android:text="Date of Birth"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/profile_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view_4"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="16sp"
+                        android:fontFamily="@font/regular"
+                        android:gravity="center"
+                        android:text="01/01/2000"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_toolbar"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="My Address"
+                android:textColor="@color/secondary"
+                android:textSize="20sp" />
+
+            <include
+                android:id="@+id/profile_address_card"
+                layout="@layout/item_address_card" />
+
+            <Button
+                android:id="@+id/profile_my_addresses_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="7sp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/bold"
+                android:gravity="start|center_vertical"
+                android:paddingVertical="15sp"
+                android:text="Add new Address"
+                android:textAllCaps="false"
+                android:textColor="@color/secondary"
+                android:textSize="15sp"
+                app:icon="@drawable/add"
+                app:iconTint="@color/secondary" />
+
+            <Button
+                android:id="@+id/profile_log_out_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="7sp"
+                android:backgroundTint="@color/primary"
+                android:fontFamily="@font/bold"
+                android:paddingVertical="15sp"
+                android:text="Log out"
+                android:textAllCaps="false"
+                android:textColor="@color/secondary"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

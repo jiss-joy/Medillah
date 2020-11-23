@@ -38,7 +38,7 @@ android {
 
 dependencies {
 
-    //Android
+    //Android Studio
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -50,12 +50,24 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.5.1'
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
     //Foreign
     implementation "com.airbnb.android:lottie:3.4.4"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.facebook.fresco:fresco:2.3.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation 'android.arch.paging:runtime:2.1.1'
+    implementation 'com.ornach.nobobutton:nobobutton:1.6'
+    implementation 'com.borjabravo:readmoretextview:2.1.0'
+    implementation 'com.github.mahimrocky:ShowMoreText:1.0.2'
+    implementation 'com.github.claudiodegio:MsvSearch:1.0.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
 
     testImplementation 'junit:junit:4.13.1'

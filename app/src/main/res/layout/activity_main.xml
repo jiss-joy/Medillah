@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:id="@+id/hamburger"
+                        android:id="@+id/main_hamburger_btn"
                         android:layout_width="60sp"
                         android:layout_height="60sp"
                         android:layout_alignParentStart="true"
@@ -47,22 +47,19 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="20sp"
-                        android:layout_toEndOf="@id/hamburger"
+                        android:layout_toEndOf="@id/main_hamburger_btn"
                         android:fontFamily="@font/bold"
                         android:text="@string/medillah"
                         android:textColor="@color/secondary"
                         android:textSize="25sp"
                         app:layout_collapseMode="pin" />
 
-                    <ImageButton
-                        android:id="@+id/cart"
+                    <include
+                        android:id="@+id/main_activity_cart_btn"
+                        layout="@layout/item_shopping_cart_button"
                         android:layout_width="60sp"
                         android:layout_height="60sp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_gravity="end"
-                        android:background="@null"
-                        android:src="@drawable/cart"
-                        app:layout_collapseMode="parallax" />
+                        android:layout_alignParentEnd="true" />
                 </RelativeLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -79,6 +76,7 @@
 
 
                 <Button
+                    android:id="@+id/main_activity_search_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="3sp"

@@ -1,35 +1,42 @@
-package com.smartechbraintechnologies.medillah.Fragments;
+package com.smartechbraintechnologies.medillah.Adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.smartechbraintechnologies.medillah.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.squareup.picasso.Picasso;
 
-public class AdapterImageSlider extends SliderViewAdapter<AdapterImageSlider.Holder> {
+import java.util.ArrayList;
 
-    private final int[] mImages;
+public class AdapterImageSliderFireBase extends SliderViewAdapter<AdapterImageSliderFireBase.Holder> {
 
-    public AdapterImageSlider(int[] mImages) {
+    private Context mContext;
+    private final ArrayList<String> mImages;
+
+    public AdapterImageSliderFireBase(Context mContext, ArrayList<String> mImages) {
+        this.mContext = mContext;
         this.mImages = mImages;
     }
 
     @Override
-    public Holder onCreateViewHolder(ViewGroup parent) {
+    public AdapterImageSliderFireBase.Holder onCreateViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slider_image, parent, false);
-        return new Holder(view);
+        return new AdapterImageSliderFireBase.Holder(view);
     }
 
     @Override
     public void onBindViewHolder(Holder viewHolder, int position) {
-        viewHolder.imageView.setImageResource(mImages[position]);
+        Glide.with(mContext).load(mImages.get(position)).into(viewHolder.imageView);
     }
 
     @Override
     public int getCount() {
-        return mImages.length;
+        return mImages.size();
     }
 
     public class Holder extends SliderViewAdapter.ViewHolder {

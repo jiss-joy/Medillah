@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.smartechbraintechnologies.medillah.LoadingDialog;
 import com.smartechbraintechnologies.medillah.MainActivity;
+import com.smartechbraintechnologies.medillah.Models.ModelAddress;
 import com.smartechbraintechnologies.medillah.R;
 import com.smartechbraintechnologies.medillah.ShowSnackbar;
 
@@ -170,9 +171,9 @@ public class ClientSurveyActivity extends AppCompatActivity {
         user.put("userHeight", mHeight);
         user.put("userWeight", mWeight);
         user.put("userBloodGroup", mBloodGroup);
-        userRef.add(user).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+        userRef.document(mAuth.getCurrentUser().getUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
+            public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     finish();
                     loadingDialog.dismissLoadingDialog();

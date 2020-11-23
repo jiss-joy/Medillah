@@ -37,25 +37,28 @@
             app:sliderScrollTimeInSec="3"
             app:sliderStartAutoCycle="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16sp"
-            android:fontFamily="@font/bold"
-            android:text="Medicines"
-            android:textColor="@color/secondary"
-            android:textSize="15sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <Button
+            android:id="@+id/pharmacy_upload_prescription_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red"
-            android:orientation="horizontal" />
+            android:layout_marginHorizontal="8sp"
+            android:layout_marginVertical="10sp"
+            android:paddingVertical="20sp"
+            android:text="Upload your prescription"
+            android:fontFamily="@font/bold"
+            android:textColor="@color/secondary"
+            app:icon="@drawable/camera"
+            app:iconGravity="textStart"
+            app:iconPadding="10sp"
+            app:iconTint="@color/secondary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="6sp"
+            android:layout_marginBottom="16sp"
             android:fontFamily="@font/bold"
             android:text="Shop By Category"
             android:textColor="@color/secondary"
