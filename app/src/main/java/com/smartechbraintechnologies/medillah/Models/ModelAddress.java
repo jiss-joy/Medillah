@@ -2,7 +2,7 @@ package com.smartechbraintechnologies.medillah.Models;
 
 public class ModelAddress {
 
-    private int icon;
+    private String addressID;
     private String addressType;
     private String addressStatus;
     private String address;
@@ -11,16 +11,16 @@ public class ModelAddress {
     public ModelAddress() {
     }
 
-    public ModelAddress(int icon, String addressType, String addressStatus, String address, String addressDeliveryStatus) {
-        this.icon = icon;
+    public ModelAddress(String addressID, String addressType, String addressStatus, String address, String addressDeliveryStatus) {
+        this.addressID = addressID;
         this.addressType = addressType;
         this.addressStatus = addressStatus;
         this.address = address;
         this.addressDeliveryStatus = addressDeliveryStatus;
     }
 
-    public int getIcon() {
-        return icon;
+    public String getAddressID() {
+        return addressID;
     }
 
     public String getAddressType() {

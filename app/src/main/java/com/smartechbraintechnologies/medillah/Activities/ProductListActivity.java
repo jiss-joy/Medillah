@@ -2,7 +2,9 @@ package com.smartechbraintechnologies.medillah.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -30,7 +32,7 @@ import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
 
-    private ImageButton toolbar_backBTN, searchBTN, shoppingCartBTN;
+    private ImageButton toolbar_backBTN, searchBTN;
     private RecyclerView productRecyclerView;
 
     private FirebaseFirestore db;
@@ -38,11 +40,16 @@ public class ProductListActivity extends AppCompatActivity {
     private AdapterProductShort pAdapter;
     private ArrayList<String> productID = new ArrayList<>();
 
+    private String category;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+
+        Intent intent = getIntent();
+        category = intent.getStringExtra("Product Category");
 
         setToolbarListeners();
         initValues();
@@ -58,7 +65,7 @@ public class ProductListActivity extends AppCompatActivity {
                     Toast.makeText(ProductListActivity.this, "No Products", Toast.LENGTH_SHORT).show();
                 } else {
                     //Displaying the matching products.
-                    Query query = productRef.orderBy("productName", Query.Direction.ASCENDING).limit(3);
+                    Query query = productRef.whereEqualTo("productCategory", category).orderBy("productName", Query.Direction.ASCENDING).limit(3);
 
                     PagedList.Config config = new PagedList.Config.Builder()
                             .setInitialLoadSizeHint(6)
@@ -73,6 +80,7 @@ public class ProductListActivity extends AppCompatActivity {
                                 public ModelProductShort parseSnapshot(@NonNull DocumentSnapshot snapshot) {
                                     ModelProductShort modelProductShort = snapshot.toObject(ModelProductShort.class);
                                     String id = snapshot.getId();
+                                    Log.d("TAG", "parseSnapshot: " + id);
                                     productID.add(id);
                                     return modelProductShort;
                                 }
@@ -100,13 +108,12 @@ public class ProductListActivity extends AppCompatActivity {
         productRecyclerView = (RecyclerView) findViewById(R.id.product_list_recycler_view);
 
         db = FirebaseFirestore.getInstance();
-        productRef = db.collection("Products").document("Ayurveda").collection("Ayurvedic Wellness");
+        productRef = db.collection("Products");
     }
 
     private void setToolbarListeners() {
         toolbar_backBTN = findViewById(R.id.toolbar_back_btn);
         searchBTN = (ImageButton) findViewById(R.id.toolbar_search_btn);
-        shoppingCartBTN = (ImageButton) findViewById(R.id.toolbar_shopping_btn);
         toolbar_backBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,13 +125,6 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), SearchEngine.class));
-            }
-        });
-
-        shoppingCartBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ShoppingCartActivity.class));
             }
         });
     }

@@ -14,6 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/address_card_options_btn"
             android:background="@color/white"
             android:padding="16sp">
 

@@ -26,6 +26,8 @@ import com.smartechbraintechnologies.medillah.Models.ModelProductShort;
 import com.smartechbraintechnologies.medillah.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+
 public class AdapterProductShort extends FirestorePagingAdapter<ModelProductShort, AdapterProductShort.MyViewHolder> {
 
     private Context mContext;
@@ -40,11 +42,11 @@ public class AdapterProductShort extends FirestorePagingAdapter<ModelProductShor
     protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull ModelProductShort model) {
         Glide.with(mContext).load(model.getProductImage()).placeholder(R.drawable.orders).into(holder.image);
         holder.name.setText(model.getProductName());
-        holder.mrp.setText("₹" + String.valueOf(model.getProductMRP()));
+        holder.mrp.setText("₹" + model.getProductMRP());
         holder.mrp.setPaintFlags(holder.mrp.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        holder.sp.setText("₹" + String.valueOf(model.getProductSellingPrice()));
-        holder.percentOFF.setText(String.valueOf(model.getProductDiscount()) + "% off");
-        holder.saveAmt.setText("Save ₹" + String.valueOf(model.getProductMRP() - model.getProductSellingPrice()));
+        holder.sp.setText("₹" + model.getProductSellingPrice());
+        holder.percentOFF.setText(new DecimalFormat("#.00").format(model.getProductDiscount()) + "% off");
+        holder.saveAmt.setText("Save ₹" + new DecimalFormat("#.00").format(model.getProductMRP() - model.getProductSellingPrice()));
     }
 
     @NonNull

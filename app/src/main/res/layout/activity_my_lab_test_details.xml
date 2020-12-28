@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Activities.MyLabTestDetailsActivity">
+
+    <include
+        android:id="@+id/my_lab_test_details_toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/my_lab_test_details_cancel_btn"
+        android:layout_below="@id/my_lab_test_details_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_lab_test_details_status_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:text="Your lab test has been placed with the doctor."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="Your Lab Test"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <include
+                android:id="@+id/my_lab_test_details_details_card"
+                layout="@layout/item_order_details_short" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="Lab Test Address"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <include
+                android:id="@+id/my_lab_test_details_address_card"
+                layout="@layout/item_address_card" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="Lab Test Details"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7sp"
+                android:elevation="10sp"
+                app:cardCornerRadius="6sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appointment ID"
+                        android:textColor="@color/secondary"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/my_lab_test_details_test_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EDKtXjGdF6bsob5Gj0ea"
+                        android:textColor="@color/secondary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:text="Date"
+                        android:textColor="@color/secondary"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/my_lab_test_details_test_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="September 17, 2020 at 5:34:34 pm"
+                        android:textColor="@color/secondary" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/my_lab_test_details_cancel_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-3dp"
+        android:padding="15dp"
+        app:nb_backgroundColor="@color/red"
+        app:nb_borderWidth="2dp"
+        app:nb_focusColor="@color/orange"
+        app:nb_text="Cancel Lab Test"
+        app:nb_textColor="@color/white"
+        app:nb_textSize="16sp"
+        app:nb_textStyle="bold" />
+
+</RelativeLayout>

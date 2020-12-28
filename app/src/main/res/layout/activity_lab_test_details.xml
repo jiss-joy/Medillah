@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_light"
+    android:orientation="vertical"
+    tools:context=".Activities.LabTestDetailsActivity">
+
+    <include
+        android:id="@+id/lab_test_details_toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/lab_test_details_choose_time__btn"
+        android:layout_below="@id/lab_test_details_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/lab_test_details_image"
+                android:layout_width="match_parent"
+                android:layout_height="400sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7sp"
+                android:padding="6sp"
+                app:cardCornerRadius="10sp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="16sp">
+
+                    <TextView
+                        android:id="@+id/lab_test_details_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:text="Lab Test Name"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/lab_test_details_mrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lab_test_details_name"
+                        android:layout_marginHorizontal="10sp"
+                        android:layout_marginTop="5sp"
+                        android:layout_toEndOf="@id/lab_test_details_sp"
+                        android:text="Rs 250"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/lab_test_details_sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lab_test_details_name"
+                        android:layout_marginTop="5sp"
+                        android:fontFamily="@font/bold"
+                        android:text="Rs. 200"
+                        android:textColor="@color/green"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/lab_test_details_name"
+                        android:layout_marginTop="5sp"
+                        android:layout_toEndOf="@id/lab_test_details_mrp"
+                        android:text="per person"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7sp"
+                android:background="@color/white"
+                app:cardCornerRadius="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="16sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:text="Test Description"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <com.skyhope.showmoretextview.ShowMoreTextView
+                        android:id="@+id/lab_test_details_test_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:maxLines="2"
+                        android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita atque, repellat hic magni vitae esse fuga adipisci amet praesentium obcaecati omnis cumque quod ut, dolorum optio aperiam eos voluptas recusandae!
+    Alias praesentium quam itaque distinctio harum, voluptates at fugit quibusdam obcaecati vitae repellendus facere dolor, unde dolores veniam laborum quas porro doloremque, eligendi ullam modi fugiat dignissimos? Consectetur, tempora quis?
+    Error culpa voluptate laudantium dolores quis quae, perspiciatis excepturi ullam aperiam temporibus voluptatibus, sed cum ab maiores et est saepe atque? Odit, aspernatur maxime voluptates illum nisi cum ipsum quibusdam.
+    Debitis laudantium possimus deleniti. Quos et in dolore porro nihil fugit tempora, accusantium soluta illum atque eaque fugiat excepturi, laboriosam maxime quam quod doloremque repudiandae reprehenderit dolor. Maiores, ducimus exercitationem.
+    Vel, corporis. Ducimus non sint velit cupiditate nobis, illo aliquid sunt. Accusantium, consequuntur explicabo! Ad nihil sequi unde debitis? Dicta, magni maxime necessitatibus animi maiores quisquam amet itaque et accusantium."
+                        android:textColor="@color/secondary" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/lab_test_details_choose_time__btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="15dp"
+        app:nb_backgroundColor="@color/primary"
+        app:nb_borderWidth="2dp"
+        app:nb_focusColor="@color/primary_dark"
+        app:nb_text="Schedule Test"
+        app:nb_textColor="@color/secondary"
+        app:nb_textSize="16sp"
+        app:nb_textStyle="bold" />
+</RelativeLayout>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_light"
+    tools:context=".Activities.ScheduleLabTestActivity">
+
+    <include
+        android:id="@+id/schedule_lab_test_toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/schedule_lab_test_schedule_btn"
+        android:layout_below="@id/schedule_lab_test_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="16sp"
+                android:fontFamily="@font/bold"
+                android:text="Schedule Test"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7sp"
+                app:cardCornerRadius="10sp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:padding="16sp">
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_tv_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5sp"
+                        android:fontFamily="@font/bold"
+                        android:text="Select from Available Test Timing"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_tv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/schedule_lab_test_tv_1"
+                        android:layout_marginVertical="5sp"
+                        android:text="Test Type:"
+                        android:textColor="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_test_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/schedule_lab_test_tv_1"
+                        android:layout_marginVertical="5sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_toEndOf="@id/schedule_lab_test_tv_2"
+                        android:fontFamily="@font/bold"
+                        android:text="Blood Sugar Test"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_tv_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/schedule_lab_test_tv_2"
+                        android:layout_marginVertical="5sp"
+                        android:text="Booking Date: "
+                        android:textColor="@color/secondary" />
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_test_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/schedule_lab_test_tv_2"
+                        android:layout_marginVertical="5sp"
+                        android:layout_marginStart="5sp"
+                        android:layout_toEndOf="@id/schedule_lab_test_tv_3"
+                        android:fontFamily="@font/bold"
+                        android:text="20/12/2020"
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+
+                    <TextView
+                        android:id="@+id/schedule_lab_test_tv_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/schedule_lab_test_tv_3"
+                        android:layout_marginVertical="5sp"
+                        android:fontFamily="@font/bold"
+                        android:text="Timings: "
+                        android:textColor="@color/secondary"
+                        android:textSize="16sp" />
+
+                    <RadioGroup
+                        android:id="@+id/schedule_lab_test_timings_radio"
+                        style="@style/ThemeOverlay.AppCompat.Light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/schedule_lab_test_tv_4"
+                        android:layout_centerHorizontal="true">
+
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <include
+                android:id="@+id/schedule_lab_test_address_card"
+                layout="@layout/item_address_card" />
+
+            <Button
+                android:id="@+id/schedule_lab_test_add_address_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="7sp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:paddingVertical="15sp"
+                android:text="You do not have any address.\nAdd one to continue"
+                android:textAllCaps="false"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/add"
+                app:iconGravity="end"
+                app:iconTint="@color/secondary" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="7sp"
+                app:cardCornerRadius="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="16sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Test Order Details"
+                        android:textColor="@color/secondary" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginVertical="5sp"
+                        android:background="@color/secondary_light" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Test Amount: "
+                            android:textColor="@color/secondary" />
+
+                        <TextView
+                            android:id="@+id/schedule_lab_test_mrp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="Rs 250"
+                            android:textColor="@color/secondary" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Savings: "
+                            android:textColor="@color/secondary" />
+
+                        <TextView
+                            android:id="@+id/schedule_lab_test_savings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/bold"
+                            android:text="-Rs 50"
+                            android:textColor="@color/green" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Applicable GST: "
+                            android:textColor="@color/secondary" />
+
+                        <TextView
+                            android:id="@+id/schedule_lab_test_gst"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="Rs 20"
+                            android:textColor="@color/secondary" />
+
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginVertical="5sp"
+                        android:background="@color/secondary" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bold"
+                            android:text="Total Amount: "
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/schedule_lab_test_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/bold"
+                            android:text="Rs 220"
+                            android:textColor="@color/secondary"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/schedule_lab_test_schedule_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="15dp"
+        app:nb_backgroundColor="@color/orange"
+        app:nb_borderWidth="2dp"
+        app:nb_focusColor="@color/red"
+        app:nb_text="Book Test"
+        app:nb_textColor="@color/white"
+        app:nb_textSize="16sp"
+        app:nb_textStyle="bold" />
+
+
+</RelativeLayout>

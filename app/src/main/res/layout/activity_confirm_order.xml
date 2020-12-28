@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Activities.ConfirmOrderActivity">
+
+    <include
+        android:id="@+id/confirm_order_toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/confirm_order_place_order_btn"
+        android:layout_below="@id/confirm_order_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="ORDER DETAILS"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <include
+                android:id="@+id/confirm_order_order_details_card"
+                layout="@layout/item_order_details" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/bold"
+                android:text="DELIVERING TO"
+                android:textColor="@color/secondary"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/confirm_order_no_address_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="250sp"
+                    android:layout_height="250sp"
+                    android:layout_gravity="center_horizontal"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/no_address" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:text="You do not have any addresses at the moment.\nClick here to add one now."
+                    android:textColor="@color/facebook_blue" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/confirm_order_address_card"
+                layout="@layout/item_address_card" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:fontFamily="@font/regular"
+                android:text="By placing your order, you agree to Medillah's privacy policy and conditions of use." />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/confirm_order_place_order_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-3dp"
+        android:padding="15dp"
+        app:nb_backgroundColor="@color/primary"
+        app:nb_borderWidth="2dp"
+        app:nb_focusColor="@color/primary_dark"
+        app:nb_text="Place Order"
+        app:nb_textColor="@color/secondary"
+        app:nb_textSize="16sp"
+        app:nb_textStyle="bold" />
+
+</RelativeLayout>

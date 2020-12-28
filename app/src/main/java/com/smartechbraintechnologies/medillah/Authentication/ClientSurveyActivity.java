@@ -171,6 +171,7 @@ public class ClientSurveyActivity extends AppCompatActivity {
         user.put("userHeight", mHeight);
         user.put("userWeight", mWeight);
         user.put("userBloodGroup", mBloodGroup);
+        user.put("userImage", "");
         userRef.document(mAuth.getCurrentUser().getUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

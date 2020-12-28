@@ -100,7 +100,7 @@ public class SearchEngine extends AppCompatActivity implements AdapterSearchHist
         searchEngine.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //TODO
+                //TODO: Do on submit searching
                 return false;
             }
 
@@ -214,7 +214,7 @@ public class SearchEngine extends AppCompatActivity implements AdapterSearchHist
 
         db = FirebaseFirestore.getInstance();
         sqlDB = new DatabaseHelper(this);
-        productRef = db.collection("Products").document("Ayurveda").collection("Ayurvedic Wellness");
+        productRef = db.collection("Products");
 
     }
 

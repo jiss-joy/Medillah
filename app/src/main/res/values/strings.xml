@@ -47,5 +47,13 @@
     <string name="pleasefillallthedetails">Please fill all the details</string>
     <string name="pleasecheckyourname">Please check your name</string>
 
+    <string name="order_placed">Your order has been placed.</string>
+    <string name="order_accepted">Your order has been accepted.</string>
+    <string name="order_declined">Your order has been declined.</string>
+    <string name="order_delivery">Your order is out for delivery.</string>
+    <string name="order_delivered">This order has been delivered to you.</string>
+    <string name="order_cancelled">This order was cancelled by you.</string>
+    <string name="appointment_placed">Your appointment has been placed.</string>
+    <string name="appointment_accepted">Your appointment has been accepted.</string>
 
 </resources>

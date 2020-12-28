@@ -34,7 +34,6 @@ public class PharmacyFragment extends Fragment implements AdapterCategory.OnCate
     private RecyclerView recyclerView_1, recyclerView_2;
     private AdapterImageSlider sliderAdapter;
     private AdapterCategory categoryAdapter;
-    private Button add_prescription_btn;
 
     @Nullable
     @Override
@@ -45,14 +44,6 @@ public class PharmacyFragment extends Fragment implements AdapterCategory.OnCate
 
         setUpSlider_1();
         setUpRecycler_2();
-
-        add_prescription_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ProfileActivity.class));
-            }
-        });
-
         return view;
     }
 
@@ -76,11 +67,10 @@ public class PharmacyFragment extends Fragment implements AdapterCategory.OnCate
     private void initValues(View view) {
         sliderView = view.findViewById(R.id.slider_view);
         recyclerView_2 = (RecyclerView) view.findViewById(R.id.pharmacy_shopping_category_recycler_view);
-        add_prescription_btn = (Button) view.findViewById(R.id.pharmacy_upload_prescription_btn);
     }
 
     @Override
     public void OnCategoryClick(int position, View view) {
-        startActivity(new Intent(getActivity(), ProductListActivity.class));
+        startActivity(new Intent(getActivity(), ProductListActivity.class).putExtra("Product Category", categories[position]));
     }
 }

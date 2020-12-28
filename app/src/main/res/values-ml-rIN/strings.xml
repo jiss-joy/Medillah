@@ -48,5 +48,14 @@
     <string name="pleasefillallthedetails">എല്ലാ വിശദാംശങ്ങളും പൂരിപ്പിക്കുക</string>
     <string name="pleasecheckyourname">ദയവായി നിങ്ങളുടെ പേര് പരിശോധിക്കുക</string>
 
+    <string name="order_placed">Your order has been placed with the hub.</string>
+    <string name="order_accepted">Your order has been accepted by the hub.</string>
+    <string name="order_declined">Your order has been declined by the hub.</string>
+    <string name="order_delivery">Your order is out for delivery.</string>
+    <string name="order_delivered">This order has been delivered to you.</string>
+    <string name="order_cancelled">This order was cancelled by you.</string>
+    <string name="appointment_placed">Your appointment has been placed.</string>
+    <string name="appointment_accepted">Your appointment has been accepted.</string>
+
 
 </resources>

@@ -11,6 +11,7 @@ import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -25,7 +26,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,13 +36,19 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.smartechbraintechnologies.medillah.Adapters.AdapterAddress;
 import com.smartechbraintechnologies.medillah.Authentication.PhoneAuthActivity;
 import com.smartechbraintechnologies.medillah.LoadingDialog;
 import com.smartechbraintechnologies.medillah.R;
+import com.smartechbraintechnologies.medillah.SearchEngine;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,18 +57,20 @@ public class ProfileActivity extends AppCompatActivity {
     public static final int PERMISSIONS_REQUEST_CODE = 1;
 
     private TextView name, number, bloodGroup, height, weight, gender, dob;
-    private TextView address_type, address_tv, address_status, no_delivery;
+    private TextView address_type, address_tv, no_delivery;
     private ImageView address_icon;
     private CircleImageView profilePic;
     private Button logOutBTN, myAddressesBTN;
-    private ImageButton backBTN, cartBTN, optionsBTN;
+    private ImageButton backBTN, optionsBTN;
     private LoadingDialog loadingDialog;
     private View view;
+    private FloatingActionButton editBTN;
 
     private Uri profilePic_uri;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private StorageReference mStorageRef;
     private CollectionReference userRef;
     private CollectionReference addressRef;
 
@@ -68,6 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        setToolbarListeners();
         initValues();
         loadingDialog.showLoadingDialog("Loading details...");
         loadDetails();
@@ -78,21 +90,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mAuth.signOut();
                 startActivity(new Intent(ProfileActivity.this, PhoneAuthActivity.class));
-            }
-        });
-
-        backBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        cartBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(new Intent(ProfileActivity.this, ShoppingCartActivity.class));
             }
         });
 
@@ -130,23 +127,32 @@ public class ProfileActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+
+        editBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            }
+        });
     }
 
     private void loadDetails() {
-        userRef.document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        userRef.document(mAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot documentSnapshot = task.getResult();
-                    name.setText(documentSnapshot.getString("userName"));
-                    number.setText(documentSnapshot.getString("userPhone"));
-                    bloodGroup.setText(documentSnapshot.getString("userBloodGroup") + "ve");
-                    height.setText(documentSnapshot.getString("userHeight") + "CM");
-                    weight.setText(documentSnapshot.getString("userWeight") + "KG");
-                    gender.setText(documentSnapshot.getString("userGender"));
-                    dob.setText(documentSnapshot.getString("userDay") + "/" + documentSnapshot.getString("userMonth") + "/"
-                            + documentSnapshot.getString("userYear"));
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                String image = value.getString("userImage");
+                if (!image.equals("")) {
+                    Picasso.get().load(image).into(profilePic);
                 }
+                name.setText(value.getString("userName"));
+                number.setText(value.getString("userPhone"));
+                bloodGroup.setText(value.getString("userBloodGroup") + "ve");
+                height.setText(value.getString("userHeight") + "CM");
+                weight.setText(value.getString("userWeight") + "KG");
+                gender.setText(value.getString("userGender"));
+                dob.setText(value.getString("userDay") + "/" + value.getString("userMonth") + "/"
+                        + value.getString("userYear"));
+
                 loadingDialog.dismissLoadingDialog();
             }
         });
@@ -178,11 +184,11 @@ public class ProfileActivity extends AppCompatActivity {
                         address_type.setText(type);
                     }
                     address_tv.setText(address);
-//                    if (delivery_status.equals("No Delivery")) {
-//                        no_delivery.setVisibility(View.VISIBLE);
-//                    } else {
-//                        no_delivery.setVisibility(View.GONE);
-//                    }
+                    if (delivery_status.equals("No Delivery")) {
+                        no_delivery.setVisibility(View.VISIBLE);
+                    } else {
+                        no_delivery.setVisibility(View.GONE);
+                    }
                 }
             }
 
@@ -192,7 +198,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void initValues() {
         logOutBTN = (Button) findViewById(R.id.profile_log_out_btn);
         backBTN = (ImageButton) findViewById(R.id.toolbar_back_btn);
-        cartBTN = (ImageButton) findViewById(R.id.toolbar_shopping_btn);
         profilePic = (CircleImageView) findViewById(R.id.profile_pic);
         myAddressesBTN = (Button) findViewById(R.id.profile_my_addresses_btn);
         name = (TextView) findViewById(R.id.profile_name);
@@ -205,12 +210,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         view = (View) findViewById(R.id.profile_address_card);
         address_icon = (ImageView) findViewById(R.id.address_card_type_image);
-        address_status = (TextView) findViewById(R.id.address_card_address_status);
         address_tv = (TextView) findViewById(R.id.address_card_address);
         address_type = (TextView) findViewById(R.id.address_card_address_type);
         no_delivery = (TextView) findViewById(R.id.address_card_no_delivery);
         no_delivery.setVisibility(View.GONE);
         optionsBTN = (ImageButton) findViewById(R.id.address_card_options_btn);
+        editBTN = (FloatingActionButton) findViewById(R.id.profile_edit_btn);
 
         loadingDialog = new LoadingDialog(ProfileActivity.this);
 
@@ -270,14 +275,35 @@ public class ProfileActivity extends AppCompatActivity {
                     .setAspectRatio(1, 1)
                     .start(this);
         }
-
+        loadingDialog.showLoadingDialog("Setting Profile Picture...");
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
                 profilePic_uri = resultUri;
-                Toast.makeText(ProfileActivity.this, "Upload Successful", Toast.LENGTH_SHORT).show();
-                Picasso.get().load(resultUri).into(profilePic);
+                mStorageRef = FirebaseStorage.getInstance().getReference().child("Profile Pictures").child(mAuth.getCurrentUser().getUid()).child(name.getText().toString());
+                final StorageReference filepath = mStorageRef.child(Objects.requireNonNull(profilePic_uri.getLastPathSegment()));
+                filepath.putFile(profilePic_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        if (taskSnapshot.getMetadata() != null) {
+                            if (taskSnapshot.getMetadata().getReference() != null) {
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        final String downloadUrl = uri.toString();
+                                        userRef.document(mAuth.getCurrentUser().getUid()).update("userImage", downloadUrl);
+                                        loadingDialog.dismissLoadingDialog();
+                                        Toast.makeText(ProfileActivity.this, "Upload Successful", Toast.LENGTH_SHORT).show();
+                                        Picasso.get().load(resultUri).into(profilePic);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
                 Toast.makeText(this, "Could not upload.\nPlease try again later.", Toast.LENGTH_LONG).show();
@@ -302,4 +328,25 @@ public class ProfileActivity extends AppCompatActivity {
         finish();
     }
 
+
+    private void setToolbarListeners() {
+        ImageButton toolbar_backBTN, searchBTN;
+
+        toolbar_backBTN = findViewById(R.id.toolbar_back_btn);
+        searchBTN = (ImageButton) findViewById(R.id.toolbar_search_btn);
+        toolbar_backBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        searchBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchEngine.class));
+            }
+        });
+
+    }
 }

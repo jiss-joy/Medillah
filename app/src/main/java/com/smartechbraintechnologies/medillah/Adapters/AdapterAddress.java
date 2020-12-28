@@ -11,7 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter;
+import com.firebase.ui.firestore.paging.FirestorePagingOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.smartechbraintechnologies.medillah.Models.ModelAddress;
+import com.smartechbraintechnologies.medillah.Models.ModelMyLabTest;
+import com.smartechbraintechnologies.medillah.Models.ModelProductShort;
 import com.smartechbraintechnologies.medillah.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,33 +24,44 @@ import java.util.ArrayList;
 
 public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.MyViewHolder> {
 
-    private final Context context;
-    private final ArrayList<ModelAddress> addressList;
+    private Context mContext;
+    private ArrayList<ModelAddress> addressItems;
     private OnOptionsClickListener onOptionsClickListener;
 
-    public AdapterAddress(Context context, ArrayList<ModelAddress> addressList, OnOptionsClickListener onOptionsClickListener) {
-        this.context = context;
-        this.addressList = addressList;
+    public AdapterAddress(Context mContext, ArrayList<ModelAddress> addressItems, OnOptionsClickListener onOptionsClickListener) {
+        this.mContext = mContext;
+        this.addressItems = addressItems;
         this.onOptionsClickListener = onOptionsClickListener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AdapterAddress.MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_address_card, parent, false), onOptionsClickListener);
+        return new AdapterAddress.MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_address_card, parent, false), onOptionsClickListener);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterAddress.MyViewHolder holder, int position) {
-        holder.address_icon.setImageResource(addressList.get(position).getIcon());
-        if (addressList.get(position).getAddressStatus().equals("Default")) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        switch (addressItems.get(position).getAddressType()) {
+            case "Home":
+                holder.address_icon.setImageResource(R.drawable.home);
+                break;
+            case "Work":
+                holder.address_icon.setImageResource(R.drawable.work);
+                break;
+            case "Other":
+                holder.address_icon.setImageResource(R.drawable.location);
+                break;
+        }
+        if (addressItems.get(position).getAddressStatus().equals("Default")) {
             holder.address_status.setVisibility(View.VISIBLE);
         } else {
             holder.address_status.setVisibility(View.GONE);
         }
-        holder.address_type.setText(addressList.get(position).getAddressType());
-        holder.address.setText(addressList.get(position).getAddress());
-        if (addressList.get(position).getAddressDeliveryStatus().equals("No Delivery")) {
+        holder.address_type.setText(addressItems.get(position).getAddressType());
+        holder.address.setText(addressItems.get(position).getAddress());
+        if (addressItems.get(position).getAddressDeliveryStatus().equals("No Delivery")) {
             holder.no_delivery.setVisibility(View.VISIBLE);
         } else {
             holder.no_delivery.setVisibility(View.GONE);
@@ -54,7 +70,7 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.MyViewHo
 
     @Override
     public int getItemCount() {
-        return addressList.size();
+        return addressItems.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -77,12 +93,15 @@ public class AdapterAddress extends RecyclerView.Adapter<AdapterAddress.MyViewHo
 
         @Override
         public void onClick(View v) {
-            onOptionsClickListener.onOptionsClick(getAdapterPosition(), v);
+            onOptionsClickListener.OnOptionsClick(getAdapterPosition(), v);
         }
     }
 
     public interface OnOptionsClickListener {
-        void onOptionsClick(int position, View v);
+        void OnOptionsClick(int position, View v);
     }
 
+    public void setOnOptionsClickListener(OnOptionsClickListener onOptionsClickListener) {
+        this.onOptionsClickListener = onOptionsClickListener;
+    }
 }

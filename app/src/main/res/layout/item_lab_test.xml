@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7sp"
+    android:background="@color/white"
+    android:padding="4sp"
+    app:cardCornerRadius="10sp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/item_lab_test_image"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_margin="10sp"
+            android:src="@drawable/lab_bw" />
+
+        <TextView
+            android:id="@+id/item_lab_test_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10sp"
+            android:layout_toStartOf="@id/item_lab_test_layout"
+            android:layout_toEndOf="@id/item_lab_test_image"
+            android:fontFamily="@font/bold"
+            android:text="Lab Test Name"
+            android:textColor="@color/secondary"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/item_lab_test_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_lab_test_mrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:text="Rs.250"
+                android:textColor="@color/secondary" />
+
+            <TextView
+                android:id="@+id/item_lab_test_sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Rs.200"
+                android:textColor="@color/green"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

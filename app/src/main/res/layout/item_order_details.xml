@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7sp"
+    android:elevation="10sp"
+    app:cardCornerRadius="10sp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16sp">
+
+        <TextView
+            android:id="@+id/order_details_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/order_details_product_status"
+            android:fontFamily="@font/bold"
+            android:text="Product Name"
+            android:textColor="@color/secondary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_details_product_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10sp"
+            android:background="@drawable/custom_checked_radio"
+            android:fontFamily="@font/bold"
+            android:padding="6sp"
+            android:text="Order Status"
+            android:textColor="@color/secondary"
+            android:textSize="10sp" />
+
+        <View
+            android:id="@+id/order_details_view1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/order_details_product_name"
+            android:layout_marginTop="5sp"
+            android:background="@color/secondary_light" />
+
+        <TextView
+            android:id="@+id/order_details_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_view1"
+            android:layout_marginVertical="5sp"
+            android:text="Price:"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_discount_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_price_tv"
+            android:layout_marginVertical="5sp"
+            android:text="Discount:"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_qty_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_discount_tv"
+            android:layout_marginVertical="5sp"
+            android:text="Quantity:"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_delivery_charge_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_qty_tv"
+            android:layout_marginVertical="5sp"
+            android:text="Delivery Charge:"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_gst_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_delivery_charge_tv"
+            android:layout_marginVertical="5sp"
+            android:layout_marginTop="9dp"
+            android:text="Applicable GST (18%):"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_total_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_view2"
+            android:layout_marginVertical="5sp"
+            android:fontFamily="@font/bold"
+            android:text="Order Total:"
+            android:textColor="@color/secondary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/order_details_mrp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_view1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:text="₹200.00"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_mrp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:text="-₹60"
+            android:textColor="@color/green" />
+
+        <TextView
+            android:id="@+id/order_details_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_discount"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:text="2"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_delivery_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_qty"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:text="₹50.00"
+            android:textColor="@color/secondary" />
+
+        <TextView
+            android:id="@+id/order_details_gst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_delivery_charge"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:text="₹36.0"
+            android:textColor="@color/secondary" />
+
+        <View
+            android:id="@+id/order_details_view2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/order_details_gst"
+            android:layout_marginTop="5sp"
+            android:background="@color/secondary_dark" />
+
+        <TextView
+            android:id="@+id/order_details_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/order_details_view2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginVertical="5sp"
+            android:fontFamily="@font/bold"
+            android:text="₹316.00"
+            android:textColor="@color/secondary"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

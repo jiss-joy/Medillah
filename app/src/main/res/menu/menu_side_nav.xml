@@ -19,25 +19,11 @@
         android:icon="@drawable/user"
         android:title="My Profile" />
 
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/side_nav_language"
-                android:icon="@drawable/language"
-                android:title="Choose Language" />
-
-        </menu>
-    </item>
-
     <item android:title="Legal">
         <menu>
             <item
-                android:id="@+id/side_nav_about"
-                android:icon="@drawable/about"
-                android:title="About" />
-            <item
                 android:id="@+id/side_nav_contact_us"
-                android:icon="@drawable/about"
+                android:icon="@drawable/contact_us"
                 android:title="Contact Us" />
 
             <item

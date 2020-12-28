@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".Activities.MyOrdersActivity">
+
+    <include
+        android:id="@+id/my_orders_toolbar"
+        layout="@layout/toolbar" />
+
+    <TextView
+        android:id="@+id/my_orders_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_orders_toolbar"
+        android:layout_margin="10sp"
+        android:fontFamily="@font/bold"
+        android:text="My Orders"
+        android:textColor="@color/secondary"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_orders_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/my_orders_tv" />
+
+    <LinearLayout
+        android:id="@+id/my_orders_no_order_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="10sp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="match_parent"
+            android:layout_height="300sp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/empty_cart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/bold"
+            android:gravity="center"
+            android:text="You have not ordered anything until now.\nGo ahead and order somthing now!"
+            android:textColor="@color/secondary"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

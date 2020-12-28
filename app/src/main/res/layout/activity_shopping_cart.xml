@@ -4,14 +4,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     tools:context=".Activities.ShoppingCartActivity">
 
     <include
         android:id="@+id/shopping_cart_toolbar"
         layout="@layout/toolbar" />
 
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/shopping_cart_bottom_bar"
+        android:layout_below="@id/shopping_cart_toolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shopping_cart_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom" />
+
+            <include
+                android:id="@+id/shopping_cart_address_card"
+                layout="@layout/item_address_card" />
+
+            <Button
+                android:id="@+id/shopping_cart_add_address_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="7sp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/bold"
+                android:gravity="center"
+                android:paddingVertical="15sp"
+                android:text="You do not have any address.\nAdd one to continue"
+                android:textAllCaps="false"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/add"
+                app:iconGravity="end"
+                app:iconTint="@color/secondary" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/shopping_cart_details_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7sp"
+                app:cardCornerRadius="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16sp"
+                        android:layout_marginTop="16sp"
+                        android:fontFamily="@font/bold"
+                        android:text="Order Details"
+                        android:textColor="@color/secondary"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="10sp"
+                        android:layout_marginVertical="10sp"
+                        android:background="@color/secondary_light" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16sp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@id/shopping_cart_rates"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cart Total "
+                                android:textColor="@color/secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Savings "
+                                android:textColor="@color/secondary" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Applicable GST "
+                                android:textColor="@color/secondary" />
+
+                            <TextView
+                                android:id="@+id/shopping_cart_delivery_charge_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Delivery Charges"
+                                android:textColor="@color/secondary" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/shopping_cart_rates"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/shopping_cart_total_cart_mrp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs.500"
+                                android:textColor="@color/secondary" />
+
+                            <TextView
+                                android:id="@+id/shopping_cart_total_savings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-Rs.100"
+                                android:textColor="@color/green" />
+
+                            <TextView
+                                android:id="@+id/shopping_cart_total_gst"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs.20"
+                                android:textColor="@color/secondary" />
+
+                            <TextView
+                                android:id="@+id/shopping_cart_delivery_charge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs.50"
+                                android:textColor="@color/secondary" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="10sp"
+                        android:layout_marginVertical="10sp"
+                        android:background="@color/secondary" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginBottom="16sp"
+                            android:fontFamily="@font/bold"
+                            android:text="Total Amount:"
+                            android:textColor="@color/secondary"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/shopping_cart_grand_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="16sp"
+                            android:layout_marginBottom="16sp"
+                            android:fontFamily="@font/bold"
+                            android:text="Rs.470"
+                            android:textColor="@color/secondary"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
     <LinearLayout
+        android:id="@+id/no_cart_items_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -22,7 +216,6 @@
             android:layout_height="200sp"
             android:layout_gravity="center_horizontal"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
             app:lottie_rawRes="@raw/empty_cart" />
 
         <TextView
@@ -35,6 +228,57 @@
             android:text="Your shopping cart seems to be empty.\nGo ahead and add something in here!"
             android:textColor="@color/secondary"
             android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shopping_cart_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:paddingHorizontal="10sp">
+
+            <TextView
+                android:id="@+id/shopping_cart_bottom_bar_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/bold"
+                android:text="Rs. 470"
+                android:textColor="@color/secondary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/shopping_cart_bottom_bar_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Details"
+                android:textColor="@color/facebook_blue"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/shopping_cart_place_order_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="7"
+            android:paddingVertical="10sp"
+            app:nb_backgroundColor="@color/orange"
+            app:nb_text="Place Order"
+            app:nb_textColor="@color/white"
+            app:nb_textSize="15sp"
+            app:nb_textStyle="bold" />
+
 
     </LinearLayout>
 

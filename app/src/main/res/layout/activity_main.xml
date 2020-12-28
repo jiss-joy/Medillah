@@ -54,12 +54,6 @@
                         android:textSize="25sp"
                         app:layout_collapseMode="pin" />
 
-                    <include
-                        android:id="@+id/main_activity_cart_btn"
-                        layout="@layout/item_shopping_cart_button"
-                        android:layout_width="60sp"
-                        android:layout_height="60sp"
-                        android:layout_alignParentEnd="true" />
                 </RelativeLayout>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -96,6 +90,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/background"
             android:paddingBottom="?attr/actionBarSize"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -129,8 +124,10 @@
         android:layout_gravity="start"
         android:background="@color/secondary_dark"
         android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:headerLayout="@layout/item_nav_header"
-        app:itemTextColor="@color/secondary_light"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:menu="@menu/menu_side_nav">
 
     </com.google.android.material.navigation.NavigationView>
